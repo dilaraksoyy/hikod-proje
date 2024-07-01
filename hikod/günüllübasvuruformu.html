@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gönüllü Başvuru Formu</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #495057;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .content {
+            margin-bottom: 40px;
+        }
+        .content h2 {
+            font-size: 28px;
+            color: rgb(105, 187, 105);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            margin-bottom: 40px;
+        }
+        .form-container h2 {
+            font-size: 24px;
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"],
+        .form-container input[type="number"],
+        .form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .form-container input[type="text"]:focus,
+        .form-container input[type="email"]:focus,
+        .form-container input[type="tel"]:focus,
+        .form-container input[type="number"]:focus,
+        .form-container textarea:focus {
+            border-color: #80bdff;
+            outline: none;
+        }
+        .form-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .form-container button:hover {
+            background-color: rgb(105, 187, 105);
+        }
+        .carousel {
+            width: 100%;
+            max-width: 600px; 
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-inner img {
+            width: 100%; 
+            object-fit:cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>GÖNÜLLÜ BAŞVURU FORMU</h2>
+            <p>Doğamızı korumak hepimizin sorumluluğudur. Birlikte hareket ederek çevremizi koruyabilir, gelecek nesillere temiz bir dünya bırakabiliriz. Siz de doğaya katkıda bulunmak için gönüllü olun!</p>
+            
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <img src="/images/winter-6762640_1920.jpg" alt="Slide 1">
+                    <img src="images/magnolia-trees-556718_1920.jpg" alt="Slide 2">
+                    <img src="images/fruit-trees-7264215_1920.jpg" alt="Slide 3">
+                    <img src="images/light-3130988_1920.jpg" alt="Slide 4">
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Gönüllülük Formu</h2>
+            <form action="/submit-volunteer-form" method="POST">
+                <label for="name">İsim:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="message">Mesaj:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Başvur</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <h2>Bağış Formu</h2>
+            <form action="/submit-donation-form" method="POST">
+                <label for="name">İsim:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Telefon:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="bankName">Banka Adı:</label>
+                <input type="text" id="bankName" name="bankName" required>
+
+                <label for="accountNumber">Hesap Numarası:</label>
+                <input type="text" id="accountNumber" name="accountNumber" required>
+
+                <label for="iban">IBAN:</label>
+                <input type="text" id="iban" name="iban" required>
+
+                <label for="donationAmount">Bağış Tutarı:</label>
+                <input type="number" id="donationAmount" name="donationAmount" required>
+
+                <button type="submit">Bağış Yap</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-inner img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index < 0) {
+                index = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                index = 0;
+            }
+
+            const offset = -index * 100;
+            document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        setInterval(nextSlide, 3000); 
+    </script>
+</body>
+</html>
